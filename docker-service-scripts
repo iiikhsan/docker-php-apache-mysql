@@ -1,6 +1,6 @@
 #add label to node for database
 sudo docker node update --label-add role=dbnode DM2
-#php-apache
+#php-apache-mysqliplugin
 sudo docker service create --name app --network web --label traefik.enable=true --label traefik.backend=app --label traefik.port=80 --label traefik.frontend.rule=Host:dockers.mach5.web.id --label traefik.backend.loadbalancer.stickiness=true --mount type=bind,source=/app/apache/www,target=/var/www/html php-apache-mysqli
 #mysql
 sudo docker service create --name db --network web --constraint node.labels.role==dbnode --publish 3306:3306 --mount type=bind,source=/app/mysql/data,target=/var/lib/mysql --env="MYSQL_ROOT_PASSWORD=supersecurepasswd" mysql
