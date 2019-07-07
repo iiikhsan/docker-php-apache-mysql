@@ -1,0 +1,2 @@
+#add label to node for database
+sudo docker node update --label-add role=dbnode DM2
